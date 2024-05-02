@@ -1,4 +1,4 @@
-import Post from "../models/posts.model";
+import Post from "../models/posts.model.js";
 import { cloudinary } from "../config/admin.js";
 
 //Get Posts
@@ -49,7 +49,6 @@ export const createPost = async (req, res, next) => {
   try {
     const { title, description, tag } = req.body;
     const image = req.file;
-    console.log(image);
 
     //Uploading image to Cloudinary via cloudinary.uploader.upload. Docs: https://cloudinary.com/documentation/image_upload_api_reference
     cloudinary.uploader.upload(image.path, async (error, result) => {
