@@ -70,7 +70,7 @@ export const createPost = async (req, res, next) => {
   }
 };
 
-//Update Post
+/* //Update Post
 export const updatePost = async (req, res, next) => {
   try {
     const post = await Post.findByPk(req.params.id);
@@ -106,3 +106,4 @@ export const deletePost = async (req, res) => {
     next(error);
   }
 };
+ */
