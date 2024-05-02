@@ -4,7 +4,7 @@ import { cloudinary } from "../config/admin.js";
 //Get Posts
 export const getPosts = async (req, res, next) => {
   try {
-    const { tag, sort } = req.query;
+    const { tag, sort, keyword } = req.query;
     let queryOptions = {};
 
     if (tag) {
@@ -13,6 +13,23 @@ export const getPosts = async (req, res, next) => {
 
     if (sort) {
       queryOptions.order = [[sort, "ASC"]];
+    }
+
+    if (keyword) {
+      queryOptions.where = {
+        [Op.or]: [
+          {
+            title: {
+              [Op.like]: `%${keyword}%`,
+            },
+          },
+          {
+            description: {
+              [Op.like]: `%${keyword}%`,
+            },
+          },
+        ],
+      };
     }
 
     const posts = await Post.findAll(queryOptions);
