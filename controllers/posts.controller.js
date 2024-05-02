@@ -1,5 +1,6 @@
 import Post from "../models/posts.model.js";
 import { cloudinary } from "../config/admin.js";
+import { Op } from "sequelize";
 
 //Get Posts
 export const getPosts = async (req, res, next) => {
